@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Design</title>
+    <link rel="stylesheet" href="style4.css">
+	<style>
+	label {
+  font-weight: bold;
+  color:#e60073;
+  font-size:20px;
+}
+
+input[type=button]{
+  background-color: #e60073 ;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}</style>
+	</head>
+	<body bgcolor=" #b3f0ff">
+	<div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Computer Graphics</h2>
+            </div>
+			<div class="menu">
+                <ul>
+                    <li><a href="line.html">Iine drawing </a></li>
+                    <li class="dropdown">
+                        <a href="#">DDA+</a>
+                        <div class="dropdown-content">
+                            <a href="About DDA.html">About DDA</a>
+                            <a href="Advantages and Disadvantages of DDA.html">Advantages and Disadvantages of DDA</a>
+                            <a href="DDA Example.html">Example</a>
+                            <a href="DDA Lab Exercise.html">DDA Lab Exercise</a>
+                        </div>
+                    </li>
+					<li class="dropdown1">
+                    <a href="#">Bresenham’s</a>
+					<div class="dropdown-content1">
+					<a href="AboutBresenham.html">About Bresenham’s </a>
+					<a href="Pros and Cons of Bresenham.html">Advantages and Disadvantages of Bresenham’s  </a>
+					<a href="ExampleBresenham.html">Example </a>
+					<a href="Bresenham Lab Exercise.html"> Bresenham’s Lab Exercise  </a>
+					</div>
+                    </li>
+                    <li><a href="references.html">References</a></li>
+                </ul>
+            </div>
+			<div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To text">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div><br></br> <br></br> <br></br>
+			<font size="20" face="impact" color="#00a3cc"><marquee behavior="alternate">DDA Line Drawing Testing: </marquee></font>
+	 <!-- -->
+	    <div class="container">
+		   <form id="">
+		    <label>Starting Point:</label> 
+			X1: <input type="text" id="x1"> Y1:  <input type="text" id="y1"> <br>
+			<label>Ending Point:</label>
+			X2:<input type="text" id="x2"> Y2:  <input type="text" id="y2"> <br>
+			<input type="button" id="draw" value="Draw" />
+		   </form>
+		</div>
+	  
+	  <!-- -->
+   
+   
+   
+      <canvas width="400" height="400" id="my_Canvas"></canvas>
+
+      <script>
+         /*================Creating a canvas=================*/
+          var canvas = document.getElementById('my_Canvas');
+          gl = canvas.getContext('experimental-webgl'); 
+         /*==========Defining and storing the geometry=======*/
+         
+		 
+		 var start_point1=20;   // x1
+		 var end_point1=10;     // y1
+		 
+		 var start_point2=80;   //x2 
+		 var end_point2=18;     //y2
+		 
+		  var btn_draw=document.getElementById('draw');
+		  var vertices=[];
+		  var n;
+		  btn_draw.onclick = function() {
+		   vertices = findPoints();
+		   n = vertices.length / 3;
+		   main(gl, vertices, n);
+		};
+		
+			 
+      function main(gl, vertices, n) {
+         // Create an empty buffer object to store the vertex buffer
+         var vertex_buffer = gl.createBuffer();
+
+         // Bind appropriate array buffer to it
+         gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
+
+         // Pass the vertex data to the buffer
+         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+         // Unbind the buffer
+         gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+         /*=========================Shaders========================*/
+
+         // vertex shader source code
+         var vertCode =
+            'attribute vec3 coordinates;' +
+
+            'void main(void) {' +
+               ' gl_Position = vec4(coordinates, 1.0);' +
+               'gl_PointSize = 5.0;'+
+            '}';
+
+         // Create a vertex shader object
+         var vertShader = gl.createShader(gl.VERTEX_SHADER);
+         
+         // Attach vertex shader source code
+         gl.shaderSource(vertShader, vertCode);
+
+         // Compile the vertex shader
+         gl.compileShader(vertShader);
+
+         // fragment shader source code
+         var fragCode =
+            'void main(void) {' +
+               ' gl_FragColor = vec4(0.0, 0.0, 0.0, 0.1);' +
+            '}';
+
+         // Create fragment shader object
+         var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
+
+         // Attach fragment shader source code
+         gl.shaderSource(fragShader, fragCode);
+
+         // Compile the fragment shader
+         gl.compileShader(fragShader);
+         
+         // Create a shader program object to store
+         // the combined shader program
+         var shaderProgram = gl.createProgram();
+
+         // Attach a vertex shader
+         gl.attachShader(shaderProgram, vertShader); 
+
+         // Attach a fragment shader
+         gl.attachShader(shaderProgram, fragShader);
+
+         // Link both programs
+         gl.linkProgram(shaderProgram);
+
+         // Use the combined shader program object
+         gl.useProgram(shaderProgram);
+
+         /*======== Associating shaders to buffer objects ========*/
+
+         // Bind vertex buffer object
+         gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
+
+         // Get the attribute location
+         var coord = gl.getAttribLocation(shaderProgram, "coordinates");
+
+         // Point an attribute to the currently bound VBO
+         gl.vertexAttribPointer(coord, 3, gl.FLOAT, false, 0, 0);
+
+         // Enable the attribute
+         gl.enableVertexAttribArray(coord);
+
+         /*============= Drawing the primitive ===============*/
+
+         // Clear the canvas
+         gl.clearColor(0.5, 0.5, 0.5, 0.9);
+
+         // Enable the depth test
+         gl.enable(gl.DEPTH_TEST);
+ 
+         // Clear the color buffer bit
+         gl.clear(gl.COLOR_BUFFER_BIT);
+
+         // Set the view port
+         gl.viewport(0, 0, canvas.width, canvas.height);
+
+         // Draw the points
+         gl.drawArrays(gl.POINTS, 0, n);
+		 }
+		 
+		 function findPoints() {
+		 
+		 var x1 = parseFloat(document.getElementById("x1").value);
+	     var y1 = parseFloat(document.getElementById("y1").value);
+	
+	     var x2 = parseFloat(document.getElementById("x2").value);
+	     var y2 = parseFloat(document.getElementById("y2").value);		 
+		 
+		 vertices = [];
+         points = [];
+		 
+		 var dx = x2 - x1;
+         var dy = y2 - y1;
+         var steps;
+         var xIncrement, yIncrement;
+         var x = x1;
+         var y = y1;
+
+         if (Math.abs(dx) > Math.abs(dy)) {
+            steps = Math.abs(dx);
+         } else {
+            steps = Math.abs(dy);
+         }
+
+         xIncrement = dx / steps;
+         yIncrement = dy / steps;
+
+         points.push(x / 100, y / 100, 0);
+
+         for (var k = 0; k < steps; k++) {
+            x += xIncrement;
+            y += yIncrement;
+            points.push(x / 100, y / 100, 0);
+         }
+
+         vertices = vertices.concat(points);
+		 
+		 var slope = dy / dx;
+         var message;
+
+         if (slope < 1) {
+            message = "Slope is less than 1 (m < 1)";
+         } else if (slope > 1) {
+            message = "Slope is greater than 1 (m > 1)";
+         } else {
+            message = "Slope is equal to 1 (m = 1)";
+         }
+		 
+		 alert(message); // Display the message
+
+         return vertices;
+		 }
+		 
+		 
+      </script>
+   </body>
+</html>

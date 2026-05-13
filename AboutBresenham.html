@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+	img{display:block;
+	margin:auto;
+    filter:grayscale(100%);
+    transition:1s;
+    opacity:9;}
+    img:hover{filter:grayscale(0);
+    transform: scale(1.1);}
+		p {
+		text-align: center;
+  font-size:30px;
+  color:#e60073;
+}
+	
+	</style>
+    <title>Webpage Design</title>
+    <link rel="stylesheet" href="style4.css">
+	</head>
+	<body bgcolor=" #b3f0ff">
+	<div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Computer Graphics</h2>
+            </div>
+			<div class="menu">
+                <ul>
+                    <li><a href="line.html">Iine drawing </a></li>
+                    <li class="dropdown">
+                        <a href="#">DDA+</a>
+                        <div class="dropdown-content">
+                            <a href="About DDA.html">About DDA</a>
+                            <a href="Advantages and Disadvantages of DDA.html">Advantages and Disadvantages of DDA</a>
+                            <a href="DDA Example.html">Example</a>
+                            <a href="DDA Lab Exercise.html">DDA Lab Exercise</a>
+                        </div>
+                    </li>
+					<li class="dropdown1">
+                    <a href="#">Bresenham’s</a>
+					<div class="dropdown-content1">
+					<a href="AboutBresenham.html">About Bresenham’s </a>
+					<a href="Pros and Cons of Bresenham.html">Advantages and Disadvantages of Bresenham’s  </a>
+					<a href="ExampleBresenham.html">Example </a>
+					<a href="Bresenham Lab Exercise.html"> Bresenham’s Lab Exercise  </a>
+					</div>
+                    </li>
+                    <li><a href="references.html">References</a></li>
+                </ul>
+            </div>
+			<div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To text">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div>
+			<br></br><br></br><br></br>
+			<font size="20" face="impact" color="#99004d"><marquee behavior="alternate">About Bresenham algorithm</marquee></font>
+		
+	
+		<p>This algorithm is used to scan and convert a line. Bresenham developed it.
+		It is an efficient method because it only requires integer addition,
+		subtraction,and multiplication operations. These operations are very fast, allowing lines to be generated quickly.
+		In this method, the next pixel selected is the one with the shortest distance from the true line.
+		</p>
+		<br></br><img src="bresenhamImg.png" alt="line" width="450"  height ="350">
+		
+		<br></br><p class="colo">The method works as follows:</p>
+
+				<p>Assume a pixel P1'(x1',y1'),then select subsequent pixels as we work our may to the night, 
+					one pixel position at a time in the horizontal direction toward P2'(x2',y2').</p>
+		        
+
+
+	
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Design</title>
+    <link rel="stylesheet" href="style4.css">
+	<style>
+	table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #ffe6ee;
+}
+
+td, th {
+  border: 2px solid #ff6699;
+  text-align: left;
+  padding: 8px;
+  color=#ff4d88;
+}
+
+
+tr:nth-child(even) {
+  background-color: #ffe6ee;
+}
+p {
+		text-align: center;
+  font-size:30px;
+  color:#e60073;
+}
+
+  h3{
+  text-align: center;
+  font-size:30px;
+  color:#e60073;
+  }
+	</style>
+	
+</head>
+<body bgcolor=" #b3f0ff">
+
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Computer Graphics</h2>
+            </div>
+			<div class="menu">
+                <ul>
+                    <li><a href="LineDrawing.html">Iine drawing </a></li>
+                    <li class="dropdown">
+                        <a href="#">DDA+</a>
+                        <div class="dropdown-content">
+                            <a href="About DDA.html">About DDA</a>
+                            <a href="Advantages and Disadvantages of DDA.html">Advantages and Disadvantages of DDA</a>
+                            <a href="DDA Example.html">Example</a>
+                            <a href="DDA Lab Exercise.html">DDA Lab Exercise</a>
+                        </div>
+                    </li>
+					<li class="dropdown1">
+                    <a href="#">Bresenham’s</a>
+					<div class="dropdown-content1">
+					<a href="AboutBresenham.html">About Bresenham’s </a>
+					<a href="Pros and Cons of Bresenham.html">Advantages and Disadvantages of Bresenham’s  </a>
+					<a href="ExampleBresenham.html">Example </a>
+					<a href="Bresenham Lab Exercise.html"> Bresenham’s Lab Exercise  </a>
+					</div>
+                    </li>
+                    <li><a href="references.html">References</a></li>
+                </ul>
+            </div>
+			<div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To text">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div>
+        
+
+        <br></br><br></br><br></br><img src="object.png" alt="line"  height="200" class="center">
+		<br>
+
+        <h3>Have you wondered what caused this image to show its lines continuously? Although it is made up of a group of pixels.</h3><br>
+		<font size="20" face="impact" color="#ff0055"><marquee behavior="alternate">Line drawing algorithm:</marquee></font><br>
+            <p>In computer graphics, a method for approximating a straight line segment on pixel-based displays 
+			(like monitors or printers). It calculates which pixels to illuminate to create the visually closest representation of the line,
+			considering the limitations of the discrete display grid. 
+			This allows for the creation of smooth-looking lines despite individual pixels.</p><br>
+       
+
+        <img src="linedrawing.png" alt="line" width="400" class="center">
+        <br><br><br>
+
+        <table style="width:100%">
+            <tr>
+                <th>Useful Definitions</th>
+                <th>General Requirements</th>
+            </tr>
+            <tr>
+                <td>
+                    <dl>
+                        <dt>Rasterization:</dt>
+                        <dd>Process of determining which pixels provide the best approximation to a desired line on the screen.</dd>
+                    </dl>
+                    <img src="raster.png" alt="line" width="400" class="center">
+                    <dl>
+                        <dt>Scan Conversion:</dt>
+                        <dd>Combination of rasterization and generating the picture in scan line order.</dd>
+                    </dl>
+					<img src="scan.png" alt="line" width="400" class="center">
+                    
+                </td>
+                <td>
+					<ol class="center">
+					<li>Straight lines must appear as straight lines</li></br>
+					<li>They must start and end accurately</li></br>
+					<li>Lines should have constant brightness along their length</li></br>
+					<li>Lines should be drawn rapidly</li>
+					</ol>
+                </td>
+            </tr>
+        </table>
+    </div>
+	</div>
+</</body>
+</</html>
+

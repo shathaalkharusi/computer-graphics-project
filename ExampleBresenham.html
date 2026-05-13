@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Design</title>
+    <link rel="stylesheet" href="style4.css">
+	<style>
+	h1{
+		text-align: center;
+  font-size:45px;
+  color:#99004d;
+}
+p{
+		text-align: center;
+  font-size:25px;
+  color:#e60073;}
+  
+  div.container {
+  text-align: center;
+}
+
+ol.myUL {
+  display: inline-block;
+  text-align: left;
+  font-size:20px;
+  color:#99004d;
+}
+table, th, td {
+  border: 3px solid #ff3399;
+  
+}
+th{font-size:30px;
+color: #99004d;
+height:45px ;
+  width:170px;}
+td{font-size:20px;
+  text-align: center;
+  color: #99004d;
+  height:45px ;
+  width:170px;
+    }
+	
+	img{display:block;
+	margin:auto;
+    filter:grayscale(100%);
+    transition:1s;
+    opacity:9;}
+    img:hover{filter:grayscale(0);
+    transform: scale(1.1);}
+	
+	</style>
+</head>
+
+<body bgcolor=" #b3f0ff">
+
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Computer Graphics</h2>
+            </div>
+			<div class="menu">
+                <ul>
+                    <li><a href="line.html">Iine drawing </a></li>
+                    <li class="dropdown">
+                        <a href="#">DDA+</a>
+                        <div class="dropdown-content">
+                            <a href="About DDA.html">About DDA</a>
+                            <a href="Advantages and Disadvantages of DDA.html">Advantages and Disadvantages of DDA</a>
+                            <a href="DDA Example.html">Example</a>
+                            <a href="DDA Lab Exercise.html">DDA Lab Exercise</a>
+                        </div>
+                    </li>
+					<li class="dropdown1">
+                    <a href="#">Bresenham’s</a>
+					<div class="dropdown-content1">
+					<a href="AboutBresenham.html">About Bresenham’s </a>
+					<a href="Pros and Cons of Bresenham.html">Advantages and Disadvantages of Bresenham’s  </a>
+					<a href="ExampleBresenham.html">Example </a>
+					<a href="Bresenham Lab Exercise.html"> Bresenham’s Lab Exercise  </a>
+					</div>
+                    </li>
+                    <li><a href="references.html">References</a></li>
+                </ul>
+            </div>
+			<div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To text">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div>
+			<br></br><br></br><br></br><h1>Example of Bresenham algorithm</h1>
+			<br></br><p> Using Bresenham algorithm, generate the coordinates of the pixels that lie on line segment having the end point (30,18) and (20,10):</p>
+<br><p>Step1: First off calculate all of the constants</p>
+<div class="container">
+<ol class="myUL">
+  <li>Δx: 10 --> 30-20</li>
+  <li>Δy: 8 --> 18-10</li>
+  <li>2Δx: 20 --> 2*10</li>
+  <li>2Δy: 16 --> 2*16</li>
+<li>2Δy - 2Δx: -4</li>
+</ol>
+</div><br>
+<p>Step2: Calculate the initial decision parameter p0:</p>
+<div class="container">
+<ol class="myUL">
+  <li>p0 = 2Δy – Δx = 6</li>
+</ol>
+</div><br>
+<p>Step3: At each Xk along the line, starting at k = 0, perform the following test.</p>
+<div class="container">
+<ol class="myUL">
+  <li>If (Pk < 0), the next point to plot is (Xk+1, Yk) and Pk+1= Pk + 2Δy.</li>
+  <li>Otherwise,the next point to plot is (Xk+1, Yk+1) and:Pk+1= Pk + 2Δy - 2ΔX</li>
+</ol>
+</div><br>
+<p>Step4: Repeat step 3 (Δx – 1) times.</p>
+
+<div class='parent'>
+ <div class='child'><table bgcolor="#ffe6f2">
+    <tr>
+        <th>p<sub>0<sub></th>
+        <th>P<sub>k</sub></th>
+        <th>(X<sub>k+1</sub>, Y<sub>k+1</sub>)</th>
+    </tr>
+	<tr>
+    <td>0</td>
+    <td>2Δy - ΔX = 6 > 0</td>
+    <td>(21, 11)</td>
+</tr>
+    <tr>
+    <td>1</td>
+    <td>6 + -4 = 2 > 0</td>
+    <td>(22, 12)</td>
+</tr>
+<tr>
+    <td>2</td>
+    <td>2 + -4 = -2 < 0 </td>
+    <td>(23, 12)</td>
+</tr>
+<tr>
+    <td>3</td>
+    <td>-2 + 16 = 14 > 0</td>
+    <td>(24, 13)</td>
+</tr>
+<tr>
+    <td>4</td>
+    <td>14 + -4 = 10 > 0</td>
+    <td>(25, 14)</td>
+</tr>
+<tr>
+    <td>5</td>
+    <td>10 + -4 = 6 > 0</td>
+    <td>(26, 15)</td>
+</tr>
+<tr>
+    <td>6</td>
+    <td>6 + -4  = 2 > 0</td>
+    <td>(27, 16)</td>
+</tr>
+<tr>
+    <td>7</td>
+    <td>2 + -4 = -2 > 0</td>
+    <td>(28, 16)</td>
+</tr>
+<tr>
+    <td>8</td>
+    <td>-2 + 16 = 14 < 0</td>
+    <td>(29, 17)</td>
+</tr>
+<tr>
+    <td>9</td>
+    <td>14 + -4 = 10 > 0</td>
+    <td>(30, 18)</td>
+</tr>
+
+</table></div>
+  
+<div class='child'><img src="BresenhamChart.png" alt="DDA" width="350" height="350"  ></div>
+  </div>
+ 
+</body>
+</html>
